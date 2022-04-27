@@ -35,7 +35,6 @@ const negativeToggle = function(num) {
 }
 
 const currentInput = document.getElementById('currentInput')
-
 const previousInput = document.getElementById('previousInput')
 
 let currentValue = ''
@@ -44,8 +43,16 @@ let previousValue = ''
 let numberArray = Array.from(document.getElementsByClassName("number"))
 numberArray.forEach(function(elem) {
     elem.addEventListener('click', function() {
-        if (currentValue == '' && elem.innerText == '.') {
-            currentValue = '0'
+        currentValue = currentValue.toString()
+        if ((currentValue == '' || currentValue == '0') && elem.innerText == '.') {
+            currentValue = '0.'
+            currentInput.textContent = currentValue
+        }
+        if (currentValue.charAt(0) == '0' && currentValue.charAt(1) != '.'){
+            currentValue = currentValue.substring(1)
+        }
+        if (currentValue.includes('.') && elem.innerText == '.'){
+            return
         }
         currentValue += elem.innerText
         currentInput.textContent = currentValue
@@ -55,8 +62,29 @@ numberArray.forEach(function(elem) {
 let operatorArray = Array.from(document.getElementsByClassName("operator"))
 operatorArray.forEach(function(elem) {
     elem.addEventListener('click', function() {
-        previousValue = `${currentValue} ${elem.innerText}`
-        previousInput.textContent = previousValue
-        currentValue = ''
+        if (elem.innerText == '±') {
+            if (currentValue == '.' || currentValue == 0){
+                return
+            }
+            currentValue = negativeToggle(currentValue)
+            currentInput.textContent = currentValue
+        }
+        else {
+            previousValue = `${currentValue} ${elem.innerText}`
+            previousInput.textContent = previousValue
+        }
     })
+})
+
+const clearEntry = document.getElementById("clearEntry")
+clearEntry.addEventListener('click', function() {
+    currentValue = currentValue.toString().slice(0, -1)
+    currentInput.textContent = currentValue
+})
+
+const clearAll = document.getElementById("clearAll")
+clearAll.addEventListener('click', function() {
+    currentValue = ''
+    currentInput.textContent = 0
+    previousInput.textContent = ''
 })
