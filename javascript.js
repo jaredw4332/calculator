@@ -64,6 +64,9 @@ let operatorArray = Array.from(document.getElementsByClassName("operator"))
 operatorArray.forEach(function(elem) {
     elem.addEventListener('click', function() {
         if (elem.innerText == '±') {
+            if (currentValue == '' && previousValue == result) {
+                currentValue = result
+            }
             if (currentValue == '.' || currentValue == 0){
                 return
             }
