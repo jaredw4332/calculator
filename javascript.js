@@ -63,7 +63,15 @@ numberArray.forEach(function(elem) {
 let operatorArray = Array.from(document.getElementsByClassName("operator"))
 operatorArray.forEach(function(elem) {
     elem.addEventListener('click', function() {
-        if (previousValue == ''){
+        if (elem.innerText == '±') {
+            if (currentValue == '.' || currentValue == 0){
+                return
+            }
+            currentValue = negativeToggle(currentValue)
+            currentInput.textContent = currentValue
+            return
+        }
+        if (previousValue == '' && currentValue == ''){
             currentValue = '0'
         }
         previousValue = previousValue.toString()
@@ -72,13 +80,6 @@ operatorArray.forEach(function(elem) {
         }
         if (currentValue == '' && previousValue == result) {
             currentValue = result
-        }
-        if (elem.innerText == '±') {
-            if (currentValue == '.' || currentValue == 0){
-                return
-            }
-            currentValue = negativeToggle(currentValue)
-            currentInput.textContent = currentValue
         }
         else {
             if (currentValue == '') {
