@@ -5,10 +5,10 @@ const operate = function(a,b,operator) {
     else if (operator == '-') {
         return subtract(a,b)
     }
-    else if (operator == '*') {
+    else if (operator == '×') {
         return multiply(a,b)
     }
-    else if (operator == '/'){
+    else if (operator == '÷'){
         return divide(a,b)
     }
 }
@@ -56,12 +56,16 @@ numberArray.forEach(function(elem) {
         }
         currentValue += elem.innerText
         currentInput.textContent = currentValue
+        previousInput.textContent = previousValue
     })
 })
 
 let operatorArray = Array.from(document.getElementsByClassName("operator"))
 operatorArray.forEach(function(elem) {
     elem.addEventListener('click', function() {
+        if (currentValue == '' && previousValue == result) {
+            currentValue = result
+        }
         if (elem.innerText == '±') {
             if (currentValue == '.' || currentValue == 0){
                 return
@@ -72,6 +76,7 @@ operatorArray.forEach(function(elem) {
         else {
             previousValue = `${currentValue} ${elem.innerText}`
             previousInput.textContent = previousValue
+            currentValue = ''
         }
     })
 })
@@ -82,9 +87,38 @@ clearEntry.addEventListener('click', function() {
     currentInput.textContent = currentValue
 })
 
-const clearAll = document.getElementById("clearAll")
-clearAll.addEventListener('click', function() {
+const clearAllButton = document.getElementById("clearAll")
+clearAllButton.addEventListener('click', clearAll)
+
+function clearAll(){
     currentValue = ''
+    previousValue = ''
     currentInput.textContent = 0
     previousInput.textContent = ''
+}
+
+let operator = ''
+let equation = ''
+let result = ''
+
+const equals = document.getElementById("equals")
+equals.addEventListener('click', function() {
+    previousValue = previousValue.toString()
+    currentValue = Number(currentValue)
+    operator = previousValue.slice(-1)
+    previousValue = Number(previousValue.slice(0, -1))
+
+    if(previousValue == 0 && currentValue == 0 && operator == '÷'){
+        alert("You weren't supposed to do that!")
+        clearAll()
+        return
+    }
+
+    equation = `${previousValue} ${operator} ${currentValue} =`
+    result = operate(previousValue, currentValue, operator)
+    
+    previousInput.textContent = equation
+    currentInput.textContent = result
+    previousValue = result
+    currentValue = ''
 })
