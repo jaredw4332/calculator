@@ -63,6 +63,10 @@ numberArray.forEach(function(elem) {
 let operatorArray = Array.from(document.getElementsByClassName("operator"))
 operatorArray.forEach(function(elem) {
     elem.addEventListener('click', function() {
+        previousValue = previousValue.toString()
+        if ((currentValue != 0 || currentValue != '') && (previousValue.includes('+') || previousValue.includes('-') || previousValue.includes('×') || previousValue.includes('÷'))) {
+            equals()
+        }
         if (currentValue == '' && previousValue == result) {
             currentValue = result
         }
@@ -75,8 +79,9 @@ operatorArray.forEach(function(elem) {
         }
         else {
             previousValue = `${currentValue} ${elem.innerText}`
-            previousInput.textContent = previousValue
             currentValue = ''
+            previousInput.textContent = previousValue
+            currentInput.textContent = currentValue
         }
     })
 })
@@ -101,8 +106,10 @@ let operator = ''
 let equation = ''
 let result = ''
 
-const equals = document.getElementById("equals")
-equals.addEventListener('click', function() {
+const equalsButton = document.getElementById("equals")
+equalsButton.addEventListener('click', equals) 
+
+function equals() {
     previousValue = previousValue.toString()
     currentValue = Number(currentValue)
     operator = previousValue.slice(-1)
@@ -121,4 +128,4 @@ equals.addEventListener('click', function() {
     currentInput.textContent = result
     previousValue = result
     currentValue = ''
-})
+}
