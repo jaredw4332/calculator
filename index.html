@@ -5,31 +5,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cool Calculator</title>
-    <script href='javascript.js'></script>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+    </style>
+    <link rel ='stylesheet' href="style.css">
+    <script src='javascript.js' defer></script>
 </head>
 <body>
-    <section class="display">
-        5005
-    </section>
-    <section class="buttons">
-        <button> + </button>
-        <button> - </button>
-        <button> x </button>
-        <button> ÷ </button>
-        <button> = </button>
-        <button> . </button>
-        <button> ± </button>
-        <button> 3 </button>
-        <button> 0 </button>
-        <button> 1 </button>
-        <button> 2 </button>
-        <button> 3 </button>
-        <button> 4 </button>
-        <button> 5 </button>
-        <button> 6 </button>
-        <button> 7 </button>
-        <button> 8 </button>
-        <button> 9 </button>
+    <section id="calculator">
+        <div id="display">
+            <div id="previousInput"></div>
+            <div id="currentInput">0</div>
+        </div>
+        <div class="buttons">
+            <button class="clearer" id="clearAll"> AC </button>
+            <button class="clearer" id="clearEntry"> CE </button>
+            <button class="operator"> ± </button>
+            <button class="operator"> + </button>
+            <button class="number"> 7 </button>
+            <button class="number"> 8 </button>
+            <button class="number"> 9 </button>
+            <button class="operator"> - </button>
+            <button class="number"> 4 </button>
+            <button class="number"> 5 </button>
+            <button class="number"> 6 </button>
+            <button class="operator"> × </button>
+            <button class="number"> 1 </button>
+            <button class="number"> 2 </button>
+            <button class="number"> 3 </button>
+            <button class="operator"> ÷ </button>
+            <button class="number"> . </button>
+            <button class="number"> 0 </button>
+            <button id="equals"> = </button>
+        </div>
     </section>
 </body>
 </html>
