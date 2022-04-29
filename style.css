@@ -1,5 +1,9 @@
+*{
+    font-family: 'Space Mono', Arial, Helvetica, sans-serif;
+}
+
 body {
-    background-color: #5ea9be;
+    background-color: #5e93be;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,12 +18,31 @@ button {
     font-size: 35px;
 }
 
-.calculator {
-    background-color: black;
-    width: 400px;;
-    height: 600px;
+#equals {
+    width: 160px;
+    background-color: #4982b8;
+    color: white;
+}
+
+.operator {
+    background-color: #96b6d4;
+}
+
+#clearEntry {
+    color: rgb(238, 57, 57)
+}
+
+#clearAll {
+    background-color: rgb(238, 57, 57);
+    color: white;
+}
+
+#calculator {
+    background-color: #94723A;
+    width: 420px;
+    min-height: 592px;
     border-style: solid;
-    border-color: white;
+    border-color: #E0BA7B;
     border-radius: 8px;
     display: grid;
     align-items: center;
@@ -30,24 +53,31 @@ button {
     "buttons"
 }
 
-.display {
-    background-color: darkgreen;
+#display {
+    background-color: #C6E1FA;
+    border-style: solid;
+    border-color: #7BB0E0;
     width: 375px;
-    height: 120px;
+    min-height: 150px;
     text-align: end;
     grid-area: display;
     justify-self: center;
+    word-break: break-all;
+    margin-top: 8px;
 }
 
-.previousInput {
+#previousInput {
     font-size: 30px;
+    min-height: 50px;
 }
 
-.currentInput{
+#currentInput{
     font-size: 65px;
+    min-height: 100px;
 }
 
 .buttons {
     grid-area: buttons;
-    align-self: center;
+    justify-self: center;
+    width: 83%;
 }
