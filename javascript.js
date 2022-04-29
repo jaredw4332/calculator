@@ -80,6 +80,8 @@ operatorArray.forEach(function(elem) {
         previousValue = previousValue.toString()
         if ((currentValue != 0 || currentValue != '') && (previousValue.includes('+') || previousValue.includes('-') || previousValue.includes('×') || previousValue.includes('÷'))) {
             equals()
+            previousInput.textContent = `${result} ${elem.innerText}`
+            currentInput.textContent = ''
         }
         if (currentValue == '' && previousValue == result) {
             previousValue = `${result} ${elem.innerText}`
