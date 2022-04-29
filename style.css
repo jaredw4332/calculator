@@ -18,6 +18,14 @@ button {
     font-size: 35px;
 }
 
+button:hover {
+    filter: brightness(90%);
+}
+
+button:active {
+    filter: brightness(80%);
+}
+
 #equals {
     width: 160px;
     background-color: #4982b8;
@@ -46,7 +54,8 @@ button {
     border-radius: 8px;
     display: grid;
     align-items: center;
-    grid-template-areas: 
+    grid-template-areas:
+    "link"
     "display"
     "buttons"
     "buttons"
@@ -57,6 +66,7 @@ button {
     background-color: #C6E1FA;
     border-style: solid;
     border-color: #7BB0E0;
+    border-radius: 9px;
     width: 375px;
     min-height: 150px;
     text-align: end;
@@ -64,6 +74,7 @@ button {
     justify-self: center;
     word-break: break-all;
     margin-top: 8px;
+    margin-bottom: 8px;
 }
 
 #previousInput {
@@ -79,5 +90,27 @@ button {
 .buttons {
     grid-area: buttons;
     justify-self: center;
-    width: 83%;
+    height: fit-content;
+    width: 347px;
+    margin-bottom: 6px;
+}
+
+#link {
+    grid-area: link;
+    text-align: right;
+    font-size: 12px;
+    margin-right: 10px;
+}
+
+img {
+    height: 14px;
+    width: 14px;
+    vertical-align: sub;
+    transition: filter .2s;
+    transition: transform .2s;
+}
+
+img:hover {
+    filter: invert(100%);
+    transform: scale(1.25);
 }
