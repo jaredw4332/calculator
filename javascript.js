@@ -82,7 +82,7 @@ operatorArray.forEach(function(elem) {
             equals()
         }
         if (currentValue == '' && previousValue == result) {
-            currentValue = result
+            previousValue = `${result} ${elem.innerText}`
         }
         else {
             if (currentValue == '') {
@@ -122,6 +122,9 @@ const equalsButton = document.getElementById("equals")
 equalsButton.addEventListener('click', equals) 
 
 function equals() {
+    if (currentInput.textContent == result){
+        return
+    }
     if (previousValue == ''){
         return
     }
