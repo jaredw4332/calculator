@@ -44,6 +44,9 @@ let numberArray = Array.from(document.getElementsByClassName("number"))
 numberArray.forEach(function(elem) {
     elem.addEventListener('click', function() {
         currentValue = currentValue.toString()
+        if (previousValue == result){
+            clearAll()
+        }
         if ((currentValue == '' || currentValue == '0') && elem.innerText == '.') {
             currentValue = '0.'
             currentInput.textContent = currentValue
@@ -76,6 +79,10 @@ operatorArray.forEach(function(elem) {
         }
         if (previousValue == '' && currentValue == ''){
             currentValue = '0'
+        }
+        if (previousValue == result && currentValue == '') {
+            previousInput.textContent = `${result} ${elem.innerText}`
+            currentInput.textContent = ''
         }
         previousValue = previousValue.toString()
         if ((currentValue != 0 || currentValue != '') && (previousValue.includes('+') || previousValue.includes('-') || previousValue.includes('×') || previousValue.includes('÷'))) {
@@ -118,7 +125,7 @@ function clearAll(){
 
 let operator = ''
 let equation = ''
-let result = ''
+let result = 'placeholder'
 
 const equalsButton = document.getElementById("equals")
 equalsButton.addEventListener('click', equals) 
